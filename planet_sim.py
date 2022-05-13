@@ -15,6 +15,8 @@ BLUE = (0,0,255)
 RED = (200,29,50)
 DARK_GREY = (80,78,81)
 
+FONT = pygame.font.SysFont('helvetica', 16)
+
 class Planet:
     AU = 149.6e6 * 1000 # constant equal to distance from earth to sun in meters aka Astronomical Units (AU)
     G = 6.67428e-11  # gravity constant
@@ -43,14 +45,18 @@ class Planet:
         if len(self.orbit) > 2:
             updated_points = []
             for point in self.orbit:
-                x, y = point 
-                x = x * self.SCALE + WIDTH / 2
-                y = y * self.SCALE + HEIGHT / 2
-                updated_points.append((x, y))
+                x_p, y_p = point 
+                x_p = x_p * self.SCALE + WIDTH / 2
+                y_p = y_p * self.SCALE + HEIGHT / 2
+                updated_points.append((x_p, y_p))
            
             pygame.draw.lines(win, self.color, False, updated_points, 2)
-       
+        
         pygame.draw.circle(win, self.color, (x,y), self.radius)
+        
+        if not self.sun:
+            distance_text = FONT.render(f"{round(self.distance_to_sun/1000, 1)}m", 1, WHITE)
+            win.blit(distance_text, (x - distance_text.get_width()/2 , y - distance_text.get_width()/2))
     
     # Im not gonna pretend to understand physics, but this works so...
     def attraction(self, other):
