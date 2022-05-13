@@ -46,12 +46,13 @@ def main():
     clock = pygame.time.Clock()
     sun = Planet(0, 0, 35, YELLOW, 1.98892 * 10e30)
     sun.sun = True
-    earth =  Planet(-1 * Planet.AU, 13, 0, BLUE, 5.9742 * 10e24)
+    earth =  Planet(-1 * Planet.AU, 0, 14, BLUE, 5.9742 * 10e24)
     planets = [sun, earth]
+
 
     while run:
         clock.tick(60)
-        #WIN.fill(WHITE)
+        
         #pygame.display.update()
         
         for event in pygame.event.get():
