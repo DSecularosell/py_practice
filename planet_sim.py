@@ -11,6 +11,7 @@ WIN = pygame.display.set_mode((WIDTH,HEIGHT))
 pygame.display.set_caption('Plant simulation!')
 WHITE = (255, 255, 255)
 YELLOW = (255,255,0)
+BLUE = (0,0,255)
 class Planet:
     AU = 149.6e6 * 1000 # constant equal to distance from earth to sun in meters
     G = 6.67428e-11  # gravity constant
@@ -45,7 +46,8 @@ def main():
     clock = pygame.time.Clock()
     sun = Planet(0, 0, 35, YELLOW, 1.98892 * 10e30)
     sun.sun = True
-    planets = [sun]
+    earth =  Planet(-1 * Planet.AU, 13, 0, BLUE, 5.9742 * 10e24)
+    planets = [sun, earth]
 
     while run:
         clock.tick(60)
